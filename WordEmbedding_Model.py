@@ -38,29 +38,6 @@ def plot_history(history):
 
 # ---------------------------------------------------------------------------------------------------------------
 
-# **** GLOVE DATASET FUNCTIONS ****
-
-# Creates an embedding matrix for existing words in a word index
-def create_embedding_matrix(filepath, word_index, embedding_dim):
-    vocab_size = len(word_index) + 1  # Adding again 1 because of reserved 0 index
-    embedding_matrix = np.zeros((vocab_size, embedding_dim))
-
-    with open(filepath) as f:
-        for line in f:
-            word, *vector = line.split()
-            if word in word_index:
-                idx = word_index[word]
-                embedding_matrix[idx] = np.array(
-                    vector, dtype=np.float32)[:embedding_dim]
-
-    return embedding_matrix
-
-
-# TODO: Personalized function to read all pretrained words from GloVe dataset
-
-
-# ---------------------------------------------------------------------------------------------------------------
-
 # **** DATA FOLDER (COMMENTS ON YELP, AMAZON, IMDB) OPENING AND READING FUNCTIONS ****
 
 filepath_dict = {'yelp': 'Data/sentiment labelled sentences/yelp_labelled.txt',
